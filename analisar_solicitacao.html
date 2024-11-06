@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Solicitação - Gov.br</title>
+    <link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/fonts/rawline/css/rawline.css"/>
+    <link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/css/core.css"/>
+    <link rel="stylesheet" href="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/css/components.css"/>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Cabeçalho com Informações do Solicitante -->
+        <div class="br-card mt-3">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="br-tag text-uppercase mb-2" status="warning">Em Análise</div>
+                        <h2 class="text-bold-600">Detalhes da Solicitação</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="br-item">
+                            <div class="content">
+                                <span class="text-sm text-gray-60">Solicitante</span>
+                                <span class="text-bold-600">SILMAR APARECIDO NEVES MORENO</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="br-item">
+                            <div class="content">
+                                <span class="text-sm text-gray-60">Inscrição Cadastral</span>
+                                <span class="text-bold-600">123.45.66.0666.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="br-item">
+                            <div class="content">
+                                <span class="text-sm text-gray-60">Cadastro</span>
+                                <span class="text-bold-600">4566</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="br-item">
+                            <div class="content">
+                                <span class="text-sm text-gray-60">Data/Hora</span>
+                                <span class="text-bold-600">18/10/2024 15:45:36</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="br-card mt-3">
+            <div class="card-content">
+                <h3 class="text-bold-600">Histórico da Solicitação</h3>
+                <div class="br-timeline">
+                    <div class="br-item active">
+                        <div class="content">
+                            <span class="text-sm text-gray-60">18/10/2024 15:45</span>
+                            <p class="text-bold-600 mb-1">Requerimento Preenchido</p>
+                            <p>Documentação inicial enviada pelo solicitante</p>
+                        </div>
+                    </div>
+                    <div class="br-item active">
+                        <div class="content">
+                            <span class="text-sm text-gray-60">18/10/2024 15:46</span>
+                            <p class="text-bold-600 mb-1">Documentos Anexados</p>
+                            <p>Contribuinte anexou documentação complementar</p>
+                        </div>
+                    </div>
+                    <div class="br-item active">
+                        <div class="content">
+                            <span class="text-sm text-gray-60">18/10/2024 15:47</span>
+                            <p class="text-bold-600 mb-1">Análise Iniciada</p>
+                            <p>Analista: Silmarmoreno</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documentos -->
+        <div class="br-card mt-3">
+            <div class="card-content">
+                <h3 class="text-bold-600">Documentos Anexados</h3>
+                <div class="br-list">
+                    <div class="br-item">
+                        <div class="content">
+                            <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            <div class="flex-fill">
+                                <span class="text-bold-600">GUIA_20DE_20SERVI_C7O_2</span>
+                                <span class="text-sm text-gray-60">application/p - 18/10/2024 15:46</span>
+                            </div>
+                            <div class="actions">
+                                <button class="br-button secondary small" type="button">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
+                                    <span>Visualizar</span>
+                                </button>
+                                <button class="br-button primary small" type="button">
+                                    <i class="fas fa-download" aria-hidden="true"></i>
+                                    <span>Download</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comunicação -->
+        <div class="br-card mt-3">
+            <div class="card-content">
+                <h3 class="text-bold-600">Comunicação</h3>
+                <div class="br-textarea">
+                    <label for="pendencia">Pendência Identificada</label>
+                    <textarea id="pendencia" placeholder="Descreva a pendência..."></textarea>
+                </div>
+                <div class="br-textarea mt-3">
+                    <label for="conclusao">Ação Concluída</label>
+                    <textarea id="conclusao" placeholder="Mensagem de conclusão..."></textarea>
+                </div>
+                <div class="br-textarea mt-3">
+                    <label for="encaminhar">Encaminhar para Análise</label>
+                    <textarea id="encaminhar" placeholder="Mensagem de encaminhamento do pedido..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="br-card mt-3 mb-5">
+            <div class="card-content">
+                <div class="d-flex justify-content-end">
+                    <button class="br-button secondary mr-2" type="button">
+                        <i class="fas fa-reply" aria-hidden="true"></i>
+                        <span>Encaminhar para Análise</span>
+                    </button>
+                    <button class="br-button primary mr-2" type="button">
+                        <i class="fas fa-check" aria-hidden="true"></i>
+                        <span>Solicitação Concluída</span>
+                    </button>
+                    <button class="br-button warning" type="button">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        <span>Solicitação com Pendência</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/js/core.min.js"></script>
+    <script src="https://cdngovbr-ds.estaleiro.serpro.gov.br/design-system/js/components.min.js"></script>
+</body>
+</html>
