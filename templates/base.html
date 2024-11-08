@@ -14,17 +14,27 @@
     <link rel="stylesheet" href="{% static 'css/core.min.css' %}">
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
-    <style>
-        /* Garantir que o conteúdo principal ocupe pelo menos a altura total da tela */
-        .content-wrapper {
-            min-height: calc(100vh - 200px); /* Ajuste 200px conforme necessário */
-        }
+    <head>
+        <!-- Outros links de CSS existentes -->
+        
+        <style>
+            /* Estilos padrão para títulos */
+            h2 {
+                font-weight: bold !important;
+            }
+            
+            /* Garantir que o conteúdo principal ocupe pelo menos a altura total da tela */
+            .content-wrapper {
+                min-height: calc(100vh - 200px);
+            }
+        
+            /* Adiciona um espaçamento inferior no conteúdo principal */
+            .main-content {
+                padding-bottom: 50px;
+            }
+        </style>
+    </head>
     
-        /* Adiciona um espaçamento inferior no conteúdo principal para evitar que o rodapé fique muito colado */
-        .main-content {
-            padding-bottom: 50px;
-        }
-    </style>
     
 </head>
 <body>
@@ -33,8 +43,9 @@
             <div class="container-lg">
                 <div class="header-top">
                     <div class="header-logo">
+                        
                         <img src="{% static 'img/LOGO_BRASAO_CIDADE_GRU_HORIZONTAL_CONTORNO-01.png' %}" alt="Brasão Guarulhos" style="height: 40px; margin-right: 10px;"/>
-                        <div class="header-sign text-blue-warm-vivid-70" style="font-size: 24px;">Fácil Digital</div>
+                        <div class="header-sign">Fácil Digital</div>
                     </div>
                     <div class="header-actions">
                         <div class="header-links d-flex align-items-center">
@@ -119,7 +130,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="menu-item" href="{% url 'solicitacoes:criar_solicitacao' %}" role="treeitem">
+                                        <a class="menu-item" href="http://127.0.0.1:8000/distribuicao/criar-classificacao/" role="treeitem">
                                             <span class="icon"><i class="fas fa-plus-circle"></i></span>
                                             <span class="content">Criar Solicitação</span>
                                         </a>
@@ -205,19 +216,20 @@
                                 </a>
                                 <ul role="group">
                                     <li>
-                                        <a class="menu-item" href="#" role="treeitem">
+                                        <a class="menu-item" href="{% url 'distribuicao:criar_classificacao' %}" role="treeitem">
                                             <span class="icon"><i class="fas fa-tags"></i></span>
                                             <span class="content">Criar Classificação</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="menu-item" href="#" role="treeitem">
+                                        <a class="menu-item" href="{% url 'distribuicao:criar_rota' %}" role="treeitem">
                                             <span class="icon"><i class="fas fa-route"></i></span>
                                             <span class="content">Definir Rota</span>
                                         </a>
+                                        
                                     </li>
                                     <li>
-                                        <a class="menu-item" href="#" role="treeitem">
+                                        <a class="menu-item" href="http://127.0.0.1:8000/distribuicao/configurar-distribuicao/" role="treeitem">
                                             <span class="icon"><i class="fas fa-cogs"></i></span>
                                             <span class="content">Configurar Distribuição</span>
                                         </a>
@@ -264,6 +276,7 @@
                             </div>
 
                             <!-- Meus Dados -->
+                            <!-- Meus Dados -->
                             <div class="menu-folder">
                                 <a class="menu-item" href="javascript:void(0)" role="treeitem">
                                     <span class="icon"><i class="fas fa-user-circle"></i></span>
@@ -279,53 +292,12 @@
                                     <li>
                                         <a class="menu-item" href="#" role="treeitem">
                                             <span class="icon"><i class="fas fa-user-edit"></i></span>
-                                            <!-- Solicitações -->
-                                            <div class="menu-folder">
-                                                <a class="menu-item" href="javascript:void(0)" role="treeitem">
-                                                    <span class="icon"><i class="fas fa-bell"></i></span>
-                                                    <span class="content">Solicitações</span>
-                                                </a>
-                                                <ul role="group">
-                                                    <li>
-                                                        <a class="menu-item" href="{% url 'solicitacoes:solicitacoes_para_analise' %}" role="treeitem">
-                                                            <span class="icon"><i class="fas fa-plus-circle"></i></span>
-                                                            <span class="content">Novas Solicitações</span>
-                                                        </a>
-                                                    </li>
-                                    
-                                                    <li>
-                                                        <a class="menu-item" href="{% url 'solicitacoes:criar_solicitacao' %}" role="treeitem">
-                                                            <span class="icon"><i class="fas fa-plus-circle"></i></span>
-                                                            <span class="content">Criar Solicitação</span>
-                                                        </a>
-                                                    </li>
-                                                    <!-- Novo item de menu -->
-                                                    <li>
-                                                        <a class="menu-item" href="{% url 'solicitacoes:analisar_solicitacao' %}" role="treeitem">
-                                                            <span class="icon"><i class="fas fa-search-plus"></i></span>
-                                                            <span class="content">Analisar Solicitação</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="menu-item" href="http://127.0.0.1:8000/solicitacoes/analisar-solicitacao/" role="treeitem">
-                                                            <span class="icon"><i class="fas fa-search-plus"></i></span>
-                                                            <span class="content">Analisar Solicitação</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="menu-item" href="{% url 'solicitacoes:classificacao_solicitacao' %}" role="treeitem">
-                                                            <span class="icon"><i class="fas fa-tasks"></i></span>
-                                                            <span class="content">Classificar/Editar</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="menu-item" href="{% url 'solicitacoes:minhas_solicitacoes' %}" role="treeitem">
-                                                            <span class="icon"><i class="fas fa-list"></i></span>
-                                                            <span class="content">Minhas Solicitações</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <span class="content">Editar Meus Dados</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
                                         </nav>
                                     </div>
                                     <div class="menu-scrim" data-dismiss="menu" tabindex="0"></div>

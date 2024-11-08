@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Distribuição</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Gerenciar Classificações</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Gerenciar Classificações</h2>
+        </div>
+    </div>
+
+    <div class="br-card mb-4">
+        <div class="card-content">
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <button class="br-button primary" type="button" onclick="window.location.href='{% url 'distribuicao:nova_classificacao' %}'">
+                        <i class="fas fa-plus" aria-hidden="true"></i>
+                        Nova Classificação
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="br-table" data-search="data-search" data-selection="data-selection">
+        <div class="table-header">
+            <div class="top-bar">
+                <div class="table-title">Classificações Cadastradas</div>
+                <div class="search-trigger">
+                    <button class="br-button circle" type="button" data-toggle="search" aria-label="Buscar">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="text-center">Descrição</th>
+                    <th class="text-center">Ativo</th>
+                    <th class="text-center">Data de Inclusão</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for classificacao in classificacoes %}
+                <tr>
+                    <td class="text-center">{{ classificacao.descricao }}</td>
+                    <td class="text-center">
+                        <span class="br-tag {% if classificacao.ativo %}success{% else %}danger{% endif %}">
+                            {{ classificacao.ativo|yesno:"Sim,Não" }}
+                        </span>
+                    </td>
+                    <td class="text-center">{{ classificacao.data_inclusao }}</td>
+                    <td class="text-center">
+                        <button class="br-button secondary circle small" type="button" title="Editar">
+                            <i class="fas fa-edit" aria-hidden="true"></i>
+                        </button>
+                        <button class="br-button danger circle small" type="button" title="Excluir">
+                            <i class="fas fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tableList = []
+        for (const [index, brTable] of window.document.querySelectorAll('.br-table').entries()) {
+            tableList.push(new core.BRTable('br-table', brTable, index))
+        }
+    });
+</script>
+{% endblock %}

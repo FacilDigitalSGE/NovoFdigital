@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+  <button class="br-button secondary" type="button" onclick="window.location.href='{% url 'distribuicao:criar_rota' %}'">
+      <i class="fas fa-arrow-left" aria-hidden="true"></i>
+      Voltar
+  </button>
+
+  {% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="{% url 'distribuicao:criar_rota' %}">Rotas de Distribuição</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Nova Rota</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Criar/Editar Rota de Distribuição</h2>
+        </div>
+    </div>
+
+    <!-- Card para seleção e listagem de classificações -->
+    <div class="br-card">
+        <div class="card-content">
+            <form>
+                <!-- Seleção de Classificação e Ativação -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="d-flex align-items-center">
+                            <div class="br-select flex-grow-1 mr-4">
+                                <label for="classificacao">Classificação</label>
+                                <select id="classificacao" class="br-select">
+                                    <option value="">Selecione uma classificação</option>
+                                    {% for classificacao in classificacoes %}
+                                        <option value="{{ classificacao.id }}">{{ classificacao.descricao }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="br-switch mt-4">
+                                <input type="checkbox" id="ativo" checked/>
+                                <label for="ativo">Ativo</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela Interativa de Grupos Pré-cadastrados -->
+                <div class="br-table mb-4">
+                    <table class="table-interactive">
+                        <thead>
+                            <tr>
+                                <th>Ordem</th>
+                                <th>Descrição</th>
+                                <th>Ativo</th>
+                                <th>Data Inclusão</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for grupo in grupos %}
+                                <tr>
+                                    <td>{{ grupo.ordem }}</td>
+                                    <td>{{ grupo.descricao }}</td>
+                                    <td>{{ grupo.ativo }}</td>
+                                    <td>{{ grupo.data_inclusao }}</td>
+                                    <td>
+                                        <button type="button" class="br-button circle" onclick="visualizarGrupo({{ grupo.id }})">
+                                            <i class="fas fa-eye" aria-hidden="true"></i>
+                                        </button>
+                                        <button type="button" class="br-button circle" onclick="window.location.href='{% url 'distribuicao:editar_rota' %}'">
+                                            <i class="fas fa-edit" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-between">
+                            <!-- Botão para criar novo grupo de classificação -->
+                            <div>
+                                <button class="br-button secondary" type="button" onclick="window.location.href='{% url 'distribuicao:criar_classificacao' %}'">
+                                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                                    Novo Grupo de Classificação
+                                </button>
+                            </div>
+
+                            <!-- Botões de criar rota e voltar -->
+                            <div>
+                                <button class="br-button primary mr-2" type="submit">
+                                    <i class="fas fa-save" aria-hidden="true"></i>
+                                    Criar
+                                </button>
+                                <button class="br-button secondary" type="button" onclick="window.location.href='{% url 'distribuicao:criar_rota' %}'">
+                                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                                    Voltar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function visualizarGrupo(id) {
+        // Simulação de funcionalidade de visualização
+        alert('Visualizando o grupo ' + id);
+    }
+
+    function editarGrupo(id) {
+        // Simulação de funcionalidade de edição
+        alert('Editando o grupo ' + id);
+    }
+</script>
+{% endblock %}
