@@ -16,17 +16,28 @@ urlpatterns = [
     path('cancelada-usuario/', views.cancelada_usuario, name='cancelada-usuario'),
     path('cancelada-sistema/', views.cancelada_sistema, name='cancelada-sistema'),
     path('concluida/', views.concluida, name='concluida'),
+<<<<<<< HEAD
     path('novas_solicitacoes/', views.novas_solicitacoes, name='novas_solicitacoes'),
     path('analisar-solicitacao/', views.analisar_solicitacao, name='analisar_solicitacao'),
     path('solicitacoes_para_analise/', views.solicitacoes_para_analise, name='solicitacoes_para_analise'),
     # urls.py
     
+=======
+    path('solicitacoes-para-analise/', views.solicitacoes_para_analise, name='solicitacoes_para_analise'),
+    path('analisar-solicitacao/', views.analisar_solicitacao, name='analisar_solicitacao'),
+    path('novas-solicitacoes/', views.novas_solicitacoes, name='novas_solicitacoes'),
+
+
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4
 
 
 
 ]
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4

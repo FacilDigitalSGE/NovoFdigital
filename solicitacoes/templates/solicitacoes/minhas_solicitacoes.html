@@ -12,6 +12,26 @@
 </li>
 {% endblock %}
 
+<<<<<<< HEAD
+=======
+<!-- Na tabela -->
+<td class="text-center">
+    {% if "Aguardando Análise" in solicitacao.1 and solicitacao.0 == "54321" %}
+        <button class="br-button secondary small" 
+                onclick="window.location.href='{% url 'solicitacoes:aguardando-analise' %}'">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            {{ solicitacao.0 }}
+        </button>
+    {% elif "Em análise" in solicitacao.1 and solicitacao.0 == "13579" %}
+        <button class="br-button secondary small" 
+                onclick="window.location.href='{% url 'solicitacoes:em-analise' %}'">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            {{ solicitacao.0 }}
+        </button>
+    {% else %}
+        {{ solicitacao.0 }}
+    {% endif %}
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4
 {% block content %}
 <div class="container-lg">
     <div class="row mb-4">
@@ -27,16 +47,130 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     {{ grid_content|safe }}
+=======
+    <div class="br-table" data-search="data-search" data-selection="data-selection">
+        <div class="table-header">
+            <div class="top-bar">
+                <div class="table-title">Solicitações</div>
+                <div class="search-trigger">
+                    <button class="br-button circle" type="button" id="button-input-search" data-toggle="search" aria-label="Abrir busca">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="search-bar">
+                <div class="br-input">
+                    <label for="table-searchbox">Buscar na tabela</label>
+                    <input id="table-searchbox" type="search" placeholder="Buscar na tabela"/>
+                    <button class="br-button" type="button" aria-label="Buscar">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <button class="br-button circle" type="button" data-dismiss="search" aria-label="Fechar busca">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+          <table role="grid">
+              <thead>
+                  <tr role="row">
+                      <th role="columnheader" class="text-center" scope="col">
+                          <button class="br-button block" type="button">
+                              Nº Protocolo
+                              <i class="fas fa-sort" aria-hidden="true"></i>
+                          </button>
+                      </th>
+                      <th role="columnheader" class="text-center" scope="col">
+                          <button class="br-button block" type="button">
+                              Situação
+                              <i class="fas fa-sort" aria-hidden="true"></i>
+                          </button>
+                      </th>
+                      <th role="columnheader" class="text-center" scope="col">
+                          <button class="br-button block" type="button">
+                              Assunto
+                              <i class="fas fa-sort" aria-hidden="true"></i>
+                          </button>
+                      </th>
+                      <th role="columnheader" class="text-center" scope="col">
+                          <button class="br-button block" type="button">
+                              Data Solicitação
+                              <i class="fas fa-sort" aria-hidden="true"></i>
+                          </button>
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for solicitacao in table_data %}
+                  <tr>
+                    <td class="text-center">
+                        {% if "Aguardando Análise" in solicitacao.1 and solicitacao.0 == "54321" %}
+                            <a href="{% url 'solicitacoes:aguardando-analise' %}" class="br-button secondary small">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                {{ solicitacao.0 }}
+                            </a>
+                        {% elif "Em análise" in solicitacao.1 and solicitacao.0 == "13579" %}
+                            <a href="{% url 'solicitacoes:em-analise' %}" class="br-button secondary small">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                {{ solicitacao.0 }}
+                            </a>
+                        {% elif "Com Pendência" in solicitacao.1 and solicitacao.0 == "13579" %}
+                            <a href="{% url 'solicitacoes:com-pendencia' %}" class="br-button secondary small">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                {{ solicitacao.0 }}
+                            </a>
+                        {% elif "Encaminhada" in solicitacao.1 and solicitacao.0 == "33445" %}
+                            <a href="{% url 'solicitacoes:encaminhada' %}" class="br-button secondary small">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                {{ solicitacao.0 }}
+                            </a>
+                        {% elif "Cancelada" in solicitacao.1 and solicitacao.0 == "55667" %}
+                            <a href="{% url 'solicitacoes:cancelada-usuario' %}" class="br-button secondary small">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                {{ solicitacao.0 }}
+                            </a>
+                        {% elif "Cancelada pelo Sistema" in solicitacao.1 and solicitacao.0 == "77889" %}
+                            <a href="{% url 'solicitacoes:cancelada-sistema' %}" class="br-button secondary small">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                {{ solicitacao.0 }}
+                            </a>
+                        {% elif "Concluída" in solicitacao.1 and solicitacao.0 == "11223" %}
+                            <a href="{% url 'solicitacoes:concluida' %}" class="br-button secondary small">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                {{ solicitacao.0 }}
+                            </a>                        {% else %}
+                            {{ solicitacao.0 }}
+                        {% endif %}
+                    </td>
+                    <td class="text-center">{{ solicitacao.1|safe }}</td>
+                    <td class="text-center">{{ solicitacao.2 }}</td>
+                    <td class="text-center">{{ solicitacao.3 }}</td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4
 </div>
 {% endblock %}
 
 {% block extra_js %}
+<<<<<<< HEAD
 <script>    document.addEventListener('DOMContentLoaded', function() {
+=======
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4
         const tableList = []
         for (const [index, brTable] of window.document.querySelectorAll('.br-table').entries()) {
             tableList.push(new core.BRTable('br-table', brTable, index))
         }
     });
 </script>
+<<<<<<< HEAD
 {% endblock %}
+=======
+{% endblock %}
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4

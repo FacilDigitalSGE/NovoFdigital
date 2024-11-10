@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+<<<<<<< HEAD
 import os
+=======
+
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -60,7 +64,11 @@ ROOT_URLCONF = 'projeto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
+=======
+        'DIRS': [BASE_DIR / 'templates'],  # Inclui a pasta de templates na raiz do projeto
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,18 +134,28 @@ USE_TZ = True
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / "node_modules/@govbr-ds",
+=======
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Inclui a pasta static padrão
+    BASE_DIR / "node_modules",  # Inclui a pasta node_modules para acessar o Design System
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4
 ]
 
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5174f04781dac12ccf5a4ce53080b796146a80d4
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
