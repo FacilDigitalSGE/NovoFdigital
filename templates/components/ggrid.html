@@ -1,0 +1,138 @@
+{% load static %}
+
+
+<div class="br-table" data-search="data-search" data-sort="data-sort">
+    <div class="table-header">
+        <div class="top-bar">
+            <div class="table-title">{{ title }}</div>
+            <div class="search-trigger" style="cursor: pointer;">
+                <div class="br-input" onclick="document.querySelector('.search-bar').classList.add('is-active')">
+                    <label for="table-searchbox">Buscar</label>
+                    <input id="table-searchbox" type="text" placeholder="Buscar na tabela" onkeyup="GGrid.filterTable()"/>
+                    <button class="br-button" type="button" aria-label="Buscar">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="search-bar">
+            <div class="br-input">
+                <label for="table-searchbox">Buscar</label>
+                <input id="table-searchbox" type="text" placeholder="Buscar na tabela" onkeyup="GGrid.filterTable()"/>
+                <button class="br-button" type="button" aria-label="Buscar">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+            <button class="br-button circle" type="button" data-dismiss="search" aria-label="Fechar busca">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                {% for column in columns %}
+                    <th scope="col">
+                        <button class="br-button block" type="button" onclick="GGrid.sortTable({{ forloop.counter0 }})">
+                            {{ column }}
+                            <i class="fas fa-sort" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_data %}
+                <tr>
+                    {% for cell in row %}
+                        <td>
+                            {% if cell.template %}
+                                {% include cell.template with priority=cell.context.priority %}
+                            {% else %}
+                                {{ cell|safe }}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        const GGrid = {
+            filterTable: function() {
+                const input = document.getElementById("table-searchbox");
+                const filter = input.value.toUpperCase();
+                const table = document.querySelector(".br-table table");
+                const tr = table.getElementsByTagName("tr");
+
+                for (let i = 1; i < tr.length; i++) {
+                    const td = tr[i].getElementsByTagName("td");
+                    let txtValue = "";
+                    let display = false;
+                    
+                    for (let j = 0; j < td.length; j++) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            display = true;
+                            break;
+                        }
+                    }
+                    tr[i].style.display = display ? "" : "none";
+                }
+            },
+
+            sortTable: function(n) {
+                const table = document.querySelector(".br-table table");
+                let rows, switching = true;
+                let i, x, y, shouldSwitch, dir = "asc";
+                let switchcount = 0;
+                
+                while (switching) {
+                    switching = false;
+                    rows = table.rows;
+                    
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        switchcount++;
+                    } else {
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            },
+
+            init: function() {
+                const tableList = []
+                for (const [index, brTable] of window.document.querySelectorAll('.br-table').entries()) {
+                    tableList.push(new core.BRTable('br-table', brTable, index))
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', GGrid.init);
+    </script>
+</div>
+

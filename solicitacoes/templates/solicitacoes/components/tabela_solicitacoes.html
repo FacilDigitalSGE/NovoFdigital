@@ -1,0 +1,12 @@
+  {% extends 'base.html' %}
+  {% load static %}
+
+  {% block content %}
+  <div class="container-lg">  
+      {% include "solicitacoes/components/ggrid.html" with 
+      title="Usuários"
+      columns=columns 
+      table_data=table_data 
+      %}
+  </div>
+  {% endblock %}

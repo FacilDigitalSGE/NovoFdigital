@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Solicitações</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Minhas Solicitações</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-weight-bold">Minhas Solicitações</h2>
+        </div>
+        <div class="col text-right">
+            <div class="br-magic-button">
+                <button class="br-button primary magic" type="button" onclick="window.location.href='{% url 'solicitacoes:criar_solicitacao' %}'">
+                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                    <span class="button-content">Nova Solicitação</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    {{ grid_content|safe }}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>    document.addEventListener('DOMContentLoaded', function() {
+        const tableList = []
+        for (const [index, brTable] of window.document.querySelectorAll('.br-table').entries()) {
+            tableList.push(new core.BRTable('br-table', brTable, index))
+        }
+    });
+</script>
+{% endblock %}

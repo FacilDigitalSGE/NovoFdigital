@@ -1,0 +1,207 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/core.min.css' %}">
+{% endblock %}
+
+<!-- Adicionar logo após o card-header e antes do card-content existente -->
+<div class="br-card">
+    <div class="card-content">
+        <h3>Dados do Solicitante</h3>
+        
+        <div class="br-input mt-3">
+            <label for="nome">Nome Completo</label>
+            <input id="nome" type="text" placeholder="Digite seu nome completo">
+        </div>
+
+        <div class="br-input mt-3">
+            <label for="data">Data de Nascimento</label>
+            <input id="data" type="date">
+        </div>
+    </div>
+</div>
+
+{% block content %}
+<div class="container-lg">
+    <div class="row">
+        <div class="col">
+            <div class="br-breadcrumb">
+                <ul class="crumb-list">
+                    <li class="crumb home">
+                        <a href="/">
+                            <i class="fas fa-home"></i>
+                            <span>Início</span>
+                        </a>
+                    </li>
+                    <li class="crumb">
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Criar Solicitação</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="br-input search-large mt-3">
+        <label for="search-main">O que você procura?</label>
+        <input id="search-main" type="search" placeholder="Pesquise antes de criar uma nova solicitação">
+        <button class="br-button circle" type="button" aria-label="Buscar">
+            <i class="fas fa-search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="br-card mt-4">
+        <div class="card-header">
+            <h2>Nova Solicitação</h2>
+            <p class="text-base">Preencha os dados abaixo para criar sua solicitação</p>
+        </div>
+
+        <!-- Inserir aqui o card de dados do solicitante -->
+        <div class="br-card">
+            <div class="card-content">
+                <h3>Dados do Solicitante</h3>
+                
+                <div class="br-input mt-3">
+                    <label for="nome">Nome Completo</label>
+                    <input id="nome" type="text" placeholder="Digite seu nome completo">
+                </div>
+
+                <div class="br-input mt-3">
+                    <label for="data">Data de Nascimento</label>
+                    <input id="data" type="date">
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-content">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="br-input">
+                    <label for="assunto">Assunto</label>
+                    <input id="assunto" type="text" placeholder="Digite o assunto da solicitação">
+                </div>
+                <div class="br-textarea">
+                    <label for="descricao">Descrição da Solicitação * (máximo 500 caracteres)</label>
+                    <textarea id="descricao" maxlength="500" placeholder="Descreva sua solicitação detalhadamente"></textarea>
+                    <div class="text-base mt-1">
+                        <span id="char-count">0</span>/500
+                    </div>
+                </div>
+
+                <!-- Adicionar novo card de Informações Cadastrais -->
+                <div class="br-card mb-4">
+                    <div class="card-content">
+                        <h3>Informações Cadastrais</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="br-input mt-3">
+                                    <label for="inscricao-imobiliaria">Inscrição Imobiliária</label>
+                                    <input id="inscricao-imobiliaria" type="text" placeholder="Digite a inscrição imobiliária">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="br-input mt-3">
+                                    <label for="inscricao-mobiliaria">Inscrição Mobiliária</label>
+                                    <input id="inscricao-mobiliaria" type="text" placeholder="Digite a inscrição mobiliária">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="br-input mt-3">
+                                    <label for="cadastro">Cadastro</label>
+                                    <input id="cadastro" type="text" placeholder="Digite o cadastro">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Prioridade -->
+                <div class="br-card mb-4">
+                    <div class="card-content">
+                        <h3>Atendimento Prioritário
+                            <button class="br-button circle small" type="button" aria-label="Ajuda" data-tooltip-text="Informamos que o botão de prioridade no Fácil Digital destina-se a agilizar o encaminhamento interno da solicitação. No entanto, a análise detalhada será realizada exclusivamente pela unidade competente. Nos termos do Estatuto do Idoso, o atendimento prioritário é garantido em processos administrativos envolvendo partes com 60 anos ou mais. É necessário formalizar o pedido de prioridade diretamente nos autos do processo administrativo, se for o caso, junto à unidade responsável, conforme os requisitos legais.">
+                                <i class="fas fa-question"></i>
+                            </button>
+                        </h3>
+                        
+                        <div class="br-switch mt-3">
+                            <input type="checkbox" id="switch-priority">
+                            <label for="switch-priority">Solicitar Prioridade - Estatuto do Idoso</label>
+                        </div>
+
+                        <div id="priority-doc-container" style="display: none;">
+                            <div class="br-upload mt-3">
+                                <label for="upload-priority-doc">Anexe um documento que comprove a idade</label>
+                                <input type="file" id="upload-priority-doc" accept="image/*, .pdf">
+                                <div class="upload-button">
+                                    <label for="upload-priority-doc" class="br-button primary">
+                                        <i class="fas fa-upload"></i>
+                                        <span>Anexar Documento</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Adicionar script para contagem de caracteres -->
+                <script>
+                document.getElementById('descricao').addEventListener('input', function() {
+                    const maxLength = 500;
+                    const currentLength = this.value.length;
+                    document.getElementById('char-count').textContent = currentLength;
+                });
+                </script>
+                <!-- Card Upload de Documentos -->
+                <div class="br-card">
+                    <div class="card-content">
+                        <h3>Documentos Anexos</h3>
+                        <div class="br-upload mt-3">
+                            <label class="upload-label" for="multiple-files">
+                                <span>Envio de arquivos</span>
+                            </label>
+                            <input class="upload-input"
+                                id="multiple-files"
+                                type="file"
+                                multiple="multiple"
+                                aria-label="enviar arquivo"/>
+                            <div class="upload-list"></div>
+                        </div>
+                        <p class="text-base mt-1">Clique ou arraste os arquivos para cima do componente Upload.</p>
+                    </div>
+                </div>
+
+                <div class="br-button-group mt-4">
+                    <button class="br-button secondary" type="button">Cancelar</button>
+                    <button class="br-button primary" type="submit">Enviar Solicitação</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+document.getElementById('switch-priority').onclick = function() {
+    document.getElementById('priority-doc-container').style.display =
+        this.checked ? 'block' : 'none';
+}
+
+window.addEventListener('load', function() {
+    const uploadList = [];
+    
+    function uploadTimeout() {
+        return new Promise((resolve) => {
+            return setTimeout(resolve, 3000);
+        });
+    }
+
+    for (const brUpload of window.document.querySelectorAll('.br-upload')) {
+        uploadList.push(new core.BRUpload('br-upload', brUpload, uploadTimeout));
+    }
+});
+</script>
+{% endblock %}
+

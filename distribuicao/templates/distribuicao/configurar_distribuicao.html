@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Distribuição</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Configurar Distribuição</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Configurar Distribuição</h2>
+        </div>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="br-card mb-4">
+        <div class="card-content">
+            <h3>Estatísticas das Solicitações Não Distribuídas</h3>
+            <div class="br-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Complexidade</th>
+                            <th>Quantidade</th>
+                            <th>Atendentes</th>
+                            <th>Média Atendente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2</td><td>67</td><td>42</td><td>1,59</td></tr>
+                        <tr><td>4 - ESPECÍFICO DRM, SSP, CERTIDOES</td><td>82</td><td>13</td><td>6,31</td></tr>
+                        <tr><td>5 - ESPECÍFICO VISA, MEIO AMBIENTE</td><td>38</td><td>7</td><td>5,42</td></tr>
+                        <tr><td>6 - ESPECÍFICO LICENÇA, VRE, CLI</td><td>14</td><td>5</td><td>2,80</td></tr>
+                        <tr><td><strong>Total</strong></td><td>201</td><td>70</td><td>2,87</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configurações -->
+    <div class="br-card mb-4">
+        <div class="card-content">
+            <h3>Opções de Configuração</h3>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="br-switch">
+                        <input type="checkbox" id="data-limite" checked/>
+                        <label for="data-limite">Considera Data Limite Atual?</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="br-input">
+                        <label for="data-limite-input">Data Limite:</label>
+                        <input type="date" id="data-limite-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="br-input">
+                        <label for="minimo-abastecimento">Número Mínimo de Abastecimento:</label>
+                        <input type="number" id="minimo-abastecimento" placeholder="Digite o número">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="br-input">
+                        <label for="quantidade-solicitacoes">Quantidade de Solicitações:</label>
+                        <input type="number" id="quantidade-solicitacoes" placeholder="Digite a quantidade">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="br-input">
+                        <label for="percentual-tarefas">Percentual de Tarefas:</label>
+                        <input type="number" id="percentual-tarefas" placeholder="Digite o percentual">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <button class="br-button primary" type="button" onclick="consultarLog()">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        Consultar LOG
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configurações por Atendente -->
+    <div class="br-card">
+        <div class="card-content">
+            <h3>Configurações por Atendente</h3>
+            <div class="br-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Classificação</th>
+                            <th>Usuário</th>
+                            <th>Departamento</th>
+                            <th>Entrega Automática</th>
+                            <th>Retorno Automático</th>
+                            <th>Desabilitar % Superior</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2</td>
+                            <td>ADAILSILVA</td>
+                            <td>Fácil Bom Clima Tarde</td>
+                            <td><div class="br-switch small"><input type="checkbox" id="entrega1"><label for="entrega1"></label></div></td>
+                            <td><div class="br-switch small"><input type="checkbox" id="retorno1"><label for="retorno1"></label></div></td>
+                            <td><div class="br-switch small"><input type="checkbox" id="superior1"><label for="superior1"></label></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function consultarLog() {
+        alert('Consultando o LOG de distribuição...');
+    }
+</script>
+{% endblock %}
