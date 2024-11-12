@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Solicitações</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Em Análise</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-weight-bold">Solicitações Distribuidas</h2>
+        </div>
+    </div>
+    {{ grid_content|safe }}
+</div>
+{% endblock %}

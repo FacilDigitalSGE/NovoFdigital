@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Solicitações</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Classificação</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Classificação de Solicitações</h2>
+        </div>
+    </div>
+
+    <div class="br-card mb-4">
+        <div class="card-content">
+            <div class="row align-items-end">
+                <div class="col-md-6">
+                    <div class="br-select">
+                        <label for="classificar-em-lote">Classificar em Lote:</label>
+                        <select id="classificar-em-lote">
+                            <option value="">-- Selecione --</option>
+                            <option value="drm">Licenciamento DRM VRE</option>
+                            <option value="outros">Licenciamento ITBI, ISSQN e Outros</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="br-button primary" type="button">
+                        <i class="fas fa-save" aria-hidden="true"></i>
+                        Salvar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ grid_content|safe }}
+</div>
+{% endblock %}

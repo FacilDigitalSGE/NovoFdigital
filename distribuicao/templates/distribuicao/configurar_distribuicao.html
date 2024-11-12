@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Distribuição</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Configurar Distribuição</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Configurar Distribuição</h2>
+        </div>
+    </div>
+
+    <!-- Após o título e antes das estatísticas -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6">
+            <div class="br-datepicker" data-mode="single" data-type="text">
+                <div class="br-input">
+                    <label for="data-limite-input">Data Limite:</label>
+                    <input type="text" id="data-limite-input" placeholder="dd/mm/aaaa"/>
+                    <button class="br-button" type="button" aria-label="Abrir Calendário" data-trigger>
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="br-card mb-4">
+        <div class="card-content">
+            <h3>Estatísticas das Solicitações Não Distribuídas</h3>
+            {{ grid_estatisticas|safe }}
+        </div>
+    </div>
+
+    <!-- Configurações -->
+    <div class="br-card mb-4" style="border: 2px solid #E52207;">
+        <div class="card-content">
+            <h3 class="h4 mb-3">Opções de Configuração</h3>
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="br-switch">
+                        <input type="checkbox" id="data-limite" checked/>
+                        <label for="data-limite">Considera Data Limite Atual?</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="br-datepicker" data-mode="single" data-type="text">
+                        <div class="br-input">
+                            <label for="data-limite-input">Data Limite:</label>
+                            <input type="text" id="data-limite-input" placeholder="dd/mm/aaaa"/>
+                            <button class="br-button circle" type="button" aria-label="Abrir Calendário" data-trigger>
+                                <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="br-input">
+                        <label for="minimo-abastecimento">Número Mínimo de Abastecimento:</label>
+                        <input type="number" id="minimo-abastecimento" placeholder="Digite o número">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="br-input">
+                        <label for="quantidade-solicitacoes">Quantidade de Solicitações:</label>
+                        <input type="number" id="quantidade-solicitacoes" placeholder="Digite a quantidade">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="br-input">
+                        <label for="percentual-tarefas">Percentual de Tarefas:</label>
+                        <input type="number" id="percentual-tarefas" placeholder="Digite o percentual">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="br-button primary" type="button" onclick="consultarLog()">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        Consultar LOG
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configurações por Atendente -->
+    <div class="br-card mb-4">
+        <div class="card-content">
+            <h3>Configurações por Atendente</h3>
+            {{ grid_atendentes|safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function consultarLog() {
+        const mensagem = 'Consultando o LOG de distribuição...';
+        const notificacao = new core.BRNotification('notificacao-consulta-log', {
+            type: 'info',
+            message: mensagem
+        });
+        notificacao.show();
+    }
+
+    // Inicializa os componentes
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializa o componente datepicker
+        const datepickerList = [];
+        for (const brDatepicker of window.document.querySelectorAll('.br-datepicker')) {
+            datepickerList.push(new core.BRDatepicker('br-datepicker', brDatepicker));
+        }
+
+        // Inicializa o componente input
+        const inputList = [];
+        for (const brInput of window.document.querySelectorAll('.br-input')) {
+            inputList.push(new core.BRInput('br-input', brInput));
+        }
+
+        // Inicializa o componente button
+        const buttonList = [];
+        for (const brButton of window.document.querySelectorAll('.br-button')) {
+            buttonList.push(new core.BRButton('br-button', brButton));
+        }
+    });
+</script>
+{% endblock %}
+
+<script src="{% static 'js/components/datepicker.min.js' %}"></script>

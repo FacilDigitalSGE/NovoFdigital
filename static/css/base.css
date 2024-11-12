@@ -1,0 +1,7 @@
+.wizard-progress-btn.error .step-circle {
+    color: #FF0000; /* Cor para o ícone de erro */
+}
+
+.wizard-progress-btn.success .step-circle {
+    color: #00A000; /* Cor para o ícone de sucesso */
+}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="{% url 'distribuicao:criar_classificacao' %}">Classificações</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Nova Classificação</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Nova Classificação</h2>
+        </div>
+    </div>
+
+    <div class="br-card">
+        <div class="card-content">
+            <form>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="br-input">
+                            <label for="nome">Nome da Classificação</label>
+                            <input id="nome" type="text" placeholder="Digite o nome"/>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="br-textarea">
+                            <label for="descricao">Descrição</label>
+                            <textarea id="descricao" rows="4" placeholder="Digite a descrição"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="br-switch">
+                            <input type="checkbox" id="status" checked/>
+                            <label for="status">Status Ativo</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'distribuicao:criar_classificacao' %}" class="br-button secondary mr-2">
+                                Cancelar
+                            </a>
+                            <button class="br-button primary" type="submit">
+                                <i class="fas fa-save" aria-hidden="true"></i>
+                                Salvar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

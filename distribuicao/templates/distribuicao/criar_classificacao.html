@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Distribuição</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Gerenciar Classificações</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Gerenciar Classificações</h2>
+        </div>
+    </div>
+
+    <div class="br-card mb-4">
+        <div class="card-content">
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <button class="br-button primary" type="button" onclick="window.location.href='{% url 'distribuicao:nova_classificacao' %}'">
+                        <i class="fas fa-plus" aria-hidden="true"></i>
+                        Nova Classificação
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ grid|safe }}
+    
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tableList = []
+        for (const [index, brTable] of window.document.querySelectorAll('.br-table').entries()) {
+            tableList.push(new core.BRTable('br-table', brTable, index))
+        }
+    });
+</script>
+{% endblock %}

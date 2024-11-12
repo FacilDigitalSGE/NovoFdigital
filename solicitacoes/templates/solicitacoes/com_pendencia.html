@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="{% url 'solicitacoes:minhas_solicitacoes' %}">Solicitações</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Detalhes da Solicitação</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <span class="br-tag warning">Protocolo #13579</span>
+            <h2 class="mt-2">Detalhes da Solicitação</h2>
+        </div>
+    </div>
+
+    <div class="br-wizard horizontal" step="2">
+        <div class="wizard-progress" role="tablist">
+            <button class="wizard-progress-btn" type="button" aria-labelledby="step1" role="tab" aria-controls="tab1" title="Aguardando Análise" active="active">
+                <span class="info" id="step1">Aguardando Análise</span>
+            </button>
+            <button class="wizard-progress-btn warning" type="button" aria-labelledby="step2" role="tab" aria-controls="tab2" title="Com Pendência" active="active">
+                <span class="info" id="step2">Com Pendência</span>
+            </button>
+            <button class="wizard-progress-btn" type="button" aria-labelledby="step3" role="tab" aria-controls="tab3" title="Encaminhada/Concluída" disabled="disabled">
+                <span class="info" id="step3">Encaminhada/Concluída</span>
+            </button>
+        </div>
+
+        <div class="wizard-form">
+            <div class="wizard-panel" active="active" role="tabpanel" id="tab1">
+                <div class="wizard-panel-content">
+                    <div class="br-message warning mb-5 mt-5" role="alert">
+                        <div class="icon">
+                            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                        </div>
+                        <div class="content">
+                            Prezado(a) requerente, sua solicitação está com pendência. Por favor, verifique os documentos necessários.
+                        </div>
+                    </div>
+
+                    <div class="row mb-5">
+                        <div class="col-md-4">
+                            <div class="br-card">
+                                <div class="card-content">
+                                    <p class="text-sm text-gray-600">Solicitante</p>
+                                    <p class="text-weight-semi-bold">{{ solicitante }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="br-card">
+                                <div class="card-content">
+                                    <p class="text-sm text-gray-600">Assunto</p>
+                                    <p class="text-weight-semi-bold">{{ assunto }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="br-card">
+                                <div class="card-content">
+                                    <p class="text-sm text-gray-600">Data de Solicitação</p>
+                                    <p class="text-weight-semi-bold">{{ data_solicitacao }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="br-card">
+        <div class="card-content">
+            <h3 class="text-weight-semi-bold mb-4">Documentos Anexados</h3>
+            <div class="br-item">
+                <div class="content">
+                    <i class="fas fa-file-pdf text-primary mr-3"></i>
+                    <div>
+                        <p class="text-weight-semi-bold mb-1">MATRICULA</p>
+                        <p class="text-sm text-gray-600">application/pdf - 18/10/2024</p>
+                    </div>
+                </div>
+                <div class="support">
+                    <button class="br-button secondary small mr-2">
+                        <i class="fas fa-eye mr-1"></i>Visualizar
+                    </button>
+                    <button class="br-button primary small">
+                        <i class="fas fa-download mr-1"></i>Download
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right mt-4">
+        <button class="br-button secondary">
+            <i class="fas fa-print mr-1"></i>Imprimir Solicitação
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const wizardList = []
+        for (const [index, brWizard] of window.document.querySelectorAll('.br-wizard').entries()) {
+            wizardList.push(new core.BRWizard('br-wizard', brWizard, index))
+        }
+    })
+</script>
+{% endblock %}

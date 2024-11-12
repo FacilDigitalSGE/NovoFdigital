@@ -1,0 +1,520 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Relatórios</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Estatísticas das Solicitações</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Estatísticas</h2>
+        </div>
+    </div>
+
+    <!-- Card de Período e Totais -->
+<div class="br-card mb-4">
+    <div class="card-content">
+        <div class="row mb-2">
+            <div class="col">
+                <h3 class="h4">Período e Totais</h3>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="br-datepicker" data-mode="single" data-type="text">
+                    <div class="br-input">
+                        <label for="data-inicial">Data Inicial</label>
+                        <input id="data-inicial" type="text" placeholder="dd/mm/aaaa"/>
+                        <button class="br-button circle small" type="button" aria-label="Calendário" data-trigger>
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="br-datepicker" data-mode="single" data-type="text">
+                    <div class="br-input">
+                        <label for="data-final">Data Final</label>
+                        <input id="data-final" type="text" placeholder="dd/mm/aaaa"/>
+                        <button class="br-button circle small" type="button" aria-label="Calendário" data-trigger>
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="br-input">
+                    <label>Total de Solicitações Recebidas</label>
+                    <input type="text" value="2500" readonly class="text-center"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="br-input">
+                    <label>Total de Solicitações Atendidas</label>
+                    <input type="text" value="1850" readonly class="text-center"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <div class="br-card hover">
+                    <div class="card-content text-center">
+                        <p class="h4 mb-2">1888</p>
+                        <small>Total Distribuídos</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="br-card hover">
+                    <div class="card-content text-center">
+                        <p class="h4 mb-2">62</p>
+                        <small>Em Análise</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="br-card hover">
+                    <div class="card-content text-center">
+                        <p class="h4 mb-2">8</p>
+                        <small>Rejeitados</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="br-card hover">
+                    <div class="card-content text-center">
+                        <p class="h4 mb-2">28</p>
+                        <small>Concluídos</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="br-card hover">
+                    <div class="card-content text-center">
+                        <p class="h4 mb-2">9</p>
+                        <small>Devolvidos</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="br-card hover">
+                    <div class="card-content text-center">
+                        <p class="h4 mb-2">0</p>
+                        <small>Cancelados</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <!-- Card de Filtros -->
+  <div class="br-card mb-4">
+      <div class="card-content">
+          <div class="row mb-3">
+              <div class="col d-flex justify-content-between align-items-center">
+                  <h3 class="h4 mb-0">
+                      <i class="fas fa-filter text-primary mr-2"></i>
+                      Filtros de Pesquisa
+                  </h3>
+                  <div>
+                      <button class="br-button secondary small" type="button" data-toggle="tooltip" data-placement="top" title="Limpar Filtros">
+                          <i class="fas fa-sync-alt text-primary" aria-hidden="true"></i>
+                          Limpar
+                      </button>
+                      <button class="br-button primary small ml-2" type="button">
+                          <i class="fas fa-search text-white" aria-hidden="true"></i>
+                          Pesquisar
+                      </button>
+                      <button class="br-button circle small ml-2" type="button" title="Imprimir">
+                          <i class="fas fa-print" aria-hidden="true"></i>
+                      </button>
+                      <button class="br-button circle small ml-2" type="button" title="Salvar">
+                          <i class="fas fa-save" aria-hidden="true"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+            <div class="br-card bg-light">
+                <div class="card-content">
+                    <div class="row">
+                        <!-- Unidade e Atendente -->
+                        <div class="col-md-6">
+                            <div class="br-select" multiple="multiple">
+                                <div class="br-input">
+                                    <label for="select-unidade">
+                                        <i class="fas fa-building text-primary mr-1"></i>
+                                        Unidade
+                                    </label>
+                                    <input id="select-unidade" type="text" placeholder="Selecione as unidades"/>
+                                    <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger>
+                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="br-list" tabindex="0">
+                                    <div class="br-item highlighted" data-all="data-all" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="unidade-todos" name="unidade-todos" type="checkbox"/>
+                                            <label for="unidade-todos">Selecionar todas</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="unidade-1" name="unidade-1" type="checkbox"/>
+                                            <label for="unidade-1">ADM</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="unidade-2" name="unidade-2" type="checkbox"/>
+                                            <label for="unidade-2">Fácil Bom Clima Tarde</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="unidade-3" name="unidade-3" type="checkbox"/>
+                                            <label for="unidade-3">Fácil Centro</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="unidade-4" name="unidade-4" type="checkbox"/>
+                                            <label for="unidade-4">Fácil São João</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="unidade-5" name="unidade-5" type="checkbox"/>
+                                            <label for="unidade-5">Fácil Pimentas</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="br-select" multiple="multiple">
+                                <div class="br-input">
+                                    <label for="select-atendente">
+                                        <i class="fas fa-user text-primary mr-1"></i>
+                                        Atendente
+                                    </label>
+                                    <input id="select-atendente" type="text" placeholder="Selecione os atendentes"/>
+                                    <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger>
+                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="br-list" tabindex="0">
+                                    <div class="br-item highlighted" data-all="data-all" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="atendente-todos" name="atendente-todos" type="checkbox"/>
+                                            <label for="atendente-todos">Selecionar todos</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="atendente-1" name="atendente-1" type="checkbox"/>
+                                            <label for="atendente-1">ADAILSILVA</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="atendente-2" name="atendente-2" type="checkbox"/>
+                                            <label for="atendente-2">ADMASANTOS</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="atendente-3" name="atendente-3" type="checkbox"/>
+                                            <label for="atendente-3">BENEDETABUENO</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <!-- Status e Classificação -->
+                        <div class="col-md-6">
+                            <div class="br-select" multiple="multiple">
+                                <div class="br-input">
+                                    <label for="select-status">
+                                        <i class="fas fa-filter text-primary mr-1"></i>
+                                        Status da Solicitação
+                                    </label>
+                                    <input id="select-status" type="text" placeholder="Selecione os status"/>
+                                    <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger>
+                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="br-list" tabindex="0">
+                                    <div class="br-item highlighted" data-all="data-all" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="status-todos" name="status-todos" type="checkbox"/>
+                                            <label for="status-todos">Selecionar todos</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="status-1" name="status-1" type="checkbox"/>
+                                            <label for="status-1">Em Análise</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="status-2" name="status-2" type="checkbox"/>
+                                            <label for="status-2">Pendente</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="status-3" name="status-3" type="checkbox"/>
+                                            <label for="status-3">Concluído</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="status-4" name="status-4" type="checkbox"/>
+                                            <label for="status-4">Cancelado</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="br-select" multiple="multiple">
+                                <div class="br-input">
+                                    <label for="select-classificacao">
+                                        <i class="fas fa-tags text-primary mr-1"></i>
+                                        Classificação
+                                    </label>
+                                    <input id="select-classificacao" type="text" placeholder="Selecione as classificações"/>
+                                    <button class="br-button" type="button" aria-label="Exibir lista" tabindex="-1" data-trigger>
+                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="br-list" tabindex="0">
+                                    <div class="br-item highlighted" data-all="data-all" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="classificacao-todos" name="classificacao-todos" type="checkbox"/>
+                                            <label for="classificacao-todos">Selecionar todas</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="classificacao-1" name="classificacao-1" type="checkbox"/>
+                                            <label for="classificacao-1">Licenciamento DRM VRE</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="classificacao-2" name="classificacao-2" type="checkbox"/>
+                                            <label for="classificacao-2">ITBI, ISSQN e Outros</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="classificacao-3" name="classificacao-3" type="checkbox"/>
+                                            <label for="classificacao-3">Meio Ambiente e VISA</label>
+                                        </div>
+                                    </div>
+                                    <div class="br-item" tabindex="-1">
+                                        <div class="br-checkbox">
+                                            <input id="classificacao-4" name="classificacao-4" type="checkbox"/>
+                                            <label for="classificacao-4">Certidões e Documentos</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  <div class="br-card mb-4">
+      <div class="card-content">
+          <div class="row mb-3">
+              <div class="col">
+                  <h3 class="h4">Estatísticas por Classificação</h3>
+              </div>
+          </div>
+        
+          <div class="row">
+              <div class="col-md-4 mb-3">
+                  <div class="br-card hover">
+                      <div class="card-content">
+                          <div class="row align-items-center">
+                              <div class="col-auto">
+                                  <i class="fas fa-file-signature fa-2x text-primary"></i>
+                              </div>
+                              <div class="col">
+                                  <p class="mb-1">Licenciamento DRM VRE</p>
+                                  <div class="d-flex justify-content-between">
+                                      <h4 class="mb-0">425</h4>
+                                      <span class="badge-success px-2">32%</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                  <div class="br-card hover">
+                      <div class="card-content">
+                          <div class="row align-items-center">
+                              <div class="col-auto">
+                                  <i class="fas fa-building fa-2x text-primary"></i>
+                              </div>
+                              <div class="col">
+                                  <p class="mb-1">ITBI, ISSQN e Outros</p>
+                                  <div class="d-flex justify-content-between">
+                                      <h4 class="mb-0">385</h4>
+                                      <span class="badge-success px-2">29%</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                  <div class="br-card hover">
+                      <div class="card-content">
+                          <div class="row align-items-center">
+                              <div class="col-auto">
+                                  <i class="fas fa-leaf fa-2x text-primary"></i>
+                              </div>
+                              <div class="col">
+                                  <p class="mb-1">Meio Ambiente e VISA</p>
+                                  <div class="d-flex justify-content-between">
+                                      <h4 class="mb-0">280</h4>
+                                      <span class="badge-success px-2">21%</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                  <div class="br-card hover">
+                      <div class="card-content">
+                          <div class="row align-items-center">
+                              <div class="col-auto">
+                                  <i class="fas fa-certificate fa-2x text-primary"></i>
+                              </div>
+                              <div class="col">
+                                  <p class="mb-1">Certidões e Documentos</p>
+                                  <div class="d-flex justify-content-between">
+                                      <h4 class="mb-0">165</h4>
+                                      <span class="badge-success px-2">12%</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                  <div class="br-card hover">
+                      <div class="card-content">
+                          <div class="row align-items-center">
+                              <div class="col-auto">
+                                  <i class="fas fa-question-circle fa-2x text-warning"></i>
+                              </div>
+                              <div class="col">
+                                  <p class="mb-1">Sem Classificação</p>
+                                  <div class="d-flex justify-content-between">
+                                      <h4 class="mb-0">82</h4>
+                                      <span class="badge-warning px-2">6%</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                  <div class="br-card hover">
+                      <div class="card-content">
+                          <div class="row align-items-center">
+                              <div class="col-auto">
+                                  <i class="fas fa-chart-pie fa-2x text-primary"></i>
+                              </div>
+                              <div class="col">
+                                  <p class="mb-1">Total Geral</p>
+                                  <div class="d-flex justify-content-between">
+                                      <h4 class="mb-0">1337</h4>
+                                      <span class="badge-primary px-2">100%</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+      <!-- Tabela de Resultados -->
+<div class="br-card">
+    <div class="card-content">
+        {{ grid|safe }}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializa datepickers
+        const datepickerList = [];
+        for (const brDatepicker of window.document.querySelectorAll('.br-datepicker')) {
+            datepickerList.push(new core.BRDatepicker('br-datepicker', brDatepicker));
+        }
+
+        // Inicializa selects múltiplos
+        const selectList = [];
+        const notFoundElement = `
+            <div class="br-item not-found">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <p><strong>Ops!</strong> Não encontramos o que você está procurando!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        for (const brSelect of window.document.querySelectorAll('.br-select')) {
+            const select = new core.BRSelect('br-select', brSelect, notFoundElement);
+            select.addEventListener('onChange', function(e) {
+                console.log('Seleção alterada:', e.detail);
+            });
+            selectList.push(select);
+        }
+
+        // Inicializa tabelas
+        const tableList = [];
+        for (const brTable of window.document.querySelectorAll('.br-table')) {
+            tableList.push(new core.BRTable('br-table', brTable));
+        }
+    });
+</script>
+<script src="{% static 'govbr/core/dist/core.min.js' %}"></script>
+
+{% endblock %}
+
+

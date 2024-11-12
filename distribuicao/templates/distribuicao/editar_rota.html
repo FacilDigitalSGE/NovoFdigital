@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="{% url 'distribuicao:criar_rota' %}">Rotas de Distribuição</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Editar Rota</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Editar Sequência da Rota de Distribuição</h2>
+            <p>Classificação: ESPECÍFICO VISA, MEIO AMBIENTE</p>
+        </div>
+    </div>
+
+    <!-- Card para edição da sequência de rotas -->
+    <div class="br-card">
+        <div class="card-content">
+            <!-- Simulação de Tabela Interativa para definir a Ordem -->
+            <div class="br-table mb-4">
+                <table class="table-interactive">
+                    <thead>
+                        <tr>
+                            <th>Ordem</th>
+                            <th>Descrição</th>
+                            <th>Ativo</th>
+                            <th>Data Inclusão</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" value="1" min="1" class="br-input"></td>
+                            <td>5 - ESPECÍFICO VISA, MEIO AMBIENTE</td>
+                            <td>Sim</td>
+                            <td>02/04/2024</td>
+                        </tr>
+                        <tr>
+                            <td><input type="number" value="2" min="1" class="br-input"></td>
+                            <td>6 - ESPECÍFICO LICENÇA, VRE, CLI</td>
+                            <td>Sim</td>
+                            <td>25/09/2024</td>
+                        </tr>
+                        <!-- Adicione mais linhas conforme necessário para simular outras sub-classificações -->
+                    </tbody>
+                </table>
+            </div>
+              <!-- Botões de Ação -->
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="d-flex justify-content-between">
+                          <!-- Botões de salvar e cancelar -->
+                          <div>
+                              <button class="br-button primary mr-2" type="button" onclick="simularSalvar()">
+                                  <i class="fas fa-save" aria-hidden="true"></i>
+                                  Salvar
+                              </button>
+                              <button class="br-button secondary" type="button" onclick="window.location.href='{% url 'distribuicao:criar_rota' %}'">
+                                  <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                                  Cancelar
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function simularSalvar() {
+        alert('A sequência da rota foi salva (simulação).');
+    }
+</script>
+{% endblock %}

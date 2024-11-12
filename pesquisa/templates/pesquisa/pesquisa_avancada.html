@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Pesquisa</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Pesquisa Avançada</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Pesquisa Avançada</h2>
+        </div>
+    </div>
+
+    <!-- Card de Filtros -->
+    <div class="br-card mb-4">
+        <div class="card-content">
+            <div class="row mb-3">
+                <div class="col">
+                    <h3 class="h4">
+                        <i class="fas fa-filter text-primary mr-2"></i>
+                        Filtros de Pesquisa
+                    </h3>
+                </div>
+            </div>
+
+            <form method="get">
+                <!-- Dados Básicos -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="br-input">
+                            <label>Número do Protocolo</label>
+                            <input type="text" placeholder="Digite o número do protocolo">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="br-input">
+                            <label>CPF/CNPJ</label>
+                            <input type="text" placeholder="Digite o CPF ou CNPJ">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="br-input">
+                            <label>Nome do Solicitante</label>
+                            <input type="text" placeholder="Digite o nome">
+                        </div>
+                    </div>
+                </div>
+                <!-- Adicione após a div do Nome do Solicitante -->
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="br-input">
+                            <label>Comunicação</label>
+                            <input type="text" name="comunicacao" placeholder="Digite o texto da comunicação">
+                        </div>
+                    </div>
+                </div>
+                <!-- Período e Status -->
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <div class="br-datepicker" data-mode="single" data-type="text">
+                            <div class="br-input">
+                                <label>Data Inicial</label>
+                                <input type="text" placeholder="dd/mm/aaaa"/>
+                                <button class="br-button circle small" type="button" aria-label="Calendário" data-trigger>
+                                    <i class="fas fa-calendar-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="br-datepicker" data-mode="single" data-type="text">
+                            <div class="br-input">
+                                <label>Data Final</label>
+                                <input type="text" placeholder="dd/mm/aaaa"/>
+                                <button class="br-button circle small" type="button" aria-label="Calendário" data-trigger>
+                                    <i class="fas fa-calendar-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="br-select">
+                            <label>Status da Solicitação</label>
+                            <select>
+                                <option value="">Todos</option>
+                                <option value="nova">Nova</option>
+                                <option value="em_analise">Em Análise</option>
+                                <option value="distribuida">Distribuída</option>
+                                <option value="concluida">Concluída</option>
+                                <option value="cancelada">Cancelada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="br-select">
+                            <label>Classificação</label>
+                            <select>
+                                <option value="">Todas</option>
+                                <option value="drm">Licenciamento DRM VRE</option>
+                                <option value="itbi">ITBI, ISSQN e Outros</option>
+                                <option value="meio_ambiente">Meio Ambiente e VISA</option>
+                                <option value="certidoes">Certidões e Documentos</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unidades e Prioridade -->
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <div class="br-select">
+                            <label>Unidade</label>
+                            <select>
+                                <option value="">Todas</option>
+                                <option value="adm">ADM</option>
+                                <option value="bom_clima">Fácil Bom Clima</option>
+                                <option value="centro">Fácil Centro</option>
+                                <option value="sao_joao">Fácil São João</option>
+                                <option value="pimentas">Fácil Pimentas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="br-select">
+                            <label>Atendente</label>
+                            <select>
+                                <option value="">Todos</option>
+                                <option value="1">ADAILSILVA</option>
+                                <option value="2">ADMASANTOS</option>
+                                <option value="3">BENEDETABUENO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="br-checkbox mt-4">
+                            <input id="check-priority" type="checkbox" aria-label="Mostrar apenas prioritários">
+                            <label for="check-priority">Mostrar apenas prioritários</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="row mt-4">
+                    <div class="col text-right">
+                        <button class="br-button secondary mr-2" type="reset">
+                            <i class="fas fa-sync-alt"></i>
+                            Limpar Filtros
+                        </button>
+                        <button class="br-button primary" type="submit">
+                            <i class="fas fa-search"></i>
+                            Pesquisar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Resultados da Pesquisa -->
+    <div class="br-card">
+        <div class="card-content">
+            {{ grid|safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializa datepickers
+        const datepickerList = [];
+        for (const brDatepicker of window.document.querySelectorAll('.br-datepicker')) {
+            datepickerList.push(new core.BRDatepicker('br-datepicker', brDatepicker));
+        }
+
+        // Inicializa selects
+        const selectList = [];
+        for (const brSelect of window.document.querySelectorAll('.br-select')) {
+            selectList.push(new core.BRSelect('br-select', brSelect));
+        }
+
+        // Inicializa tabela
+        const tableList = [];
+        for (const brTable of window.document.querySelectorAll('.br-table')) {
+            tableList.push(new core.BRTable('br-table', brTable));
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <a href="#">Solicitações</a>
+</li>
+<li class="crumb">
+    <i class="fas fa-angle-right"></i>
+    <span>Novas Solicitações</span>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <div class="row mb-4">
+        <div class="col">
+            <h2 class="text-bold-weight-semi-bold">Novas Solicitações</h2>
+        </div>
+    </div>
+
+    <div class="br-table" data-search="data-search" data-selection="data-selection">
+        <div class="table-header">
+            <div class="top-bar">
+                <div class="table-title">Lista de Solicitações</div>
+                <div class="search-trigger">
+                    <button class="br-button circle" type="button" data-toggle="search" aria-label="Buscar">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="search-bar">
+                <div class="br-input">
+                    <label for="table-searchbox">Buscar na tabela</label>
+                    <input id="table-searchbox" type="search" placeholder="Buscar na tabela"/>
+                    <button class="br-button" type="button" aria-label="Buscar">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <button class="br-button circle" type="button" data-dismiss="search" aria-label="Fechar busca">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="text-center border-right" scope="col" data-sort="data-sort">
+                        <button class="br-button block" type="button">
+                            Nº Protocolo
+                            <i class="fas fa-sort" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                    <th class="text-center border-right" scope="col" data-sort="data-sort">
+                        <button class="br-button block" type="button">
+                            Assunto
+                            <i class="fas fa-sort" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                    <th class="text-center border-right" scope="col" data-sort="data-sort">
+                        <button class="br-button block" type="button">
+                            Data Atribuição
+                            <i class="fas fa-sort" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                    <th class="text-center border-right" scope="col" data-sort="data-sort">
+                        <button class="br-button block" type="button">
+                            Solicitante
+                            <i class="fas fa-sort" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                    <th class="text-center border-right" scope="col" data-sort="data-sort">
+                        <button class="br-button block" type="button">
+                            CPF/CNPJ
+                            <i class="fas fa-sort" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                    <th class="text-center border-right" scope="col" data-sort="data-sort">
+                        <button class="br-button block" type="button">
+                            Telefone
+                            <i class="fas fa-sort" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                    <th class="text-center border-right" scope="col" data-sort="data-sort">
+                        <button class="br-button block" type="button">
+                            E-mail
+                            <i class="fas fa-sort" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                    <th class="text-center border-right" scope="col" data-sort="data-sort">
+                        <button class="br-button block" type="button">
+                            Data Entrada
+                            <i class="fas fa-sort" aria-hidden="true"></i>
+                        </button>
+                    </th>
+                    <th class="text-center border-right" scope="col">Prioridade</th>
+                    <th class="text-center" scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                    <td>{{ row.2 }}</td>
+                    <td>{{ row.3 }}</td>
+                    <td>{{ row.4 }}</td>
+                    <td>{{ row.5 }}</td>
+                    <td>{{ row.6 }}</td>
+                    <td>{{ row.7 }}</td>
+                    <td class="text-center">
+                        <div class="d-flex align-items-center justify-content-center">
+                            {% if row.8.context.priority.elderly %}
+                                <span class="br-tag info mr-2" title="Idoso">
+                                    <i class="fas fa-user-clock"></i>
+                                    Idoso
+                                </span>
+                            {% endif %}
+                            
+                            <div class="br-switch small">
+                                <input id="urgent-{{ row.0 }}" type="checkbox" {% if row.8.context.priority.urgent %}checked{% endif %}>
+                                <label for="urgent-{{ row.0 }}">Urgente</label>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <button class="br-button secondary circle small" type="button" title="Editar Classificação">
+                            <i class="fas fa-edit" aria-hidden="true"></i>
+                        </button>
+                        <button class="br-button primary circle small" type="button" title="Visualizar">
+                            <i class="fas fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tableList = []
+        for (const [index, brTable] of window.document.querySelectorAll('.br-table').entries()) {
+            tableList.push(new core.BRTable('br-table', brTable, index))
+        }
+    });
+</script>
+{% endblock %}
